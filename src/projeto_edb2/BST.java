@@ -21,5 +21,29 @@ public class BST {
         return searchRecursive(node.getRight(), value);
        
     }
+    
+    public void insert(int value) {
+    	Node newNode = new Node(value);
+    	this.root = insertRecursive(root, newNode);
+    	
+    }
+    
+    private Node insertRecursive(Node node, Node newNode) {
+    	if(node == null) {
+    		return newNode;
+    	}
+    	
+    	if(newNode.getValue() < node.getValue()) {
+    		node.setLeft(insertRecursive(node.getLeft(), newNode));
+    		node.setLeftSize(node.getLeftSize() + 1);
+    	} else if(newNode.getValue() > node.getValue()) {
+    		node.setRight(insertRecursive(node.getRight(), newNode));
+    		node.setRightSize(node.getRightSize() + 1);
+    	}
+    	
+    	return node;
+    }
 
 }
+
+
