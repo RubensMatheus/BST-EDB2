@@ -16,6 +16,8 @@ public class Teste {
         System.out.println("Buscar 90: " + bst.search(90));
         System.out.println("Buscar 10: " + bst.search(10));
         System.out.println("Buscar 80: " + bst.search(80));
+        
+        bst.imprimeArvore(1);
 
 	}
 
