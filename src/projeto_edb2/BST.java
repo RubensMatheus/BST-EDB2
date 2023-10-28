@@ -16,9 +16,10 @@ public class BST {
 
         if (value < node.getValue()) {
         	return searchRec(node.getLeft(), value);
-        } else {
-        	return searchRec(node.getRight(), value);
-        }
+        } 
+        
+        return searchRec(node.getRight(), value);
+       
     }
 
 }
