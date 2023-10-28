@@ -5,20 +5,20 @@ public class BST {
 	private Node root;
 
 	public Node search(int value) {
-        return searchRec(root, value);
+        return searchRecursive(root, value);
     }
 
 	// auxiliar para busca
-    private Node searchRec(Node node, int value) {
+    private Node searchRecursive(Node node, int value) {
         if (node == null || node.getValue() == value) {
             return node;
         }
 
         if (value < node.getValue()) {
-        	return searchRec(node.getLeft(), value);
+        	return searchRecursive(node.getLeft(), value);
         } 
         
-        return searchRec(node.getRight(), value);
+        return searchRecursive(node.getRight(), value);
        
     }
 
