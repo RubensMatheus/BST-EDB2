@@ -8,20 +8,19 @@ public class Teste {
 
 	public static void main(String[] args) {
 		BST bst = new BST();
-		bst.insert(80);
-		bst.insert(20);
-		bst.insert(30);
-		bst.insert(10);
-		bst.insert(15);
-		bst.insert(14);
-		bst.insert(13);
+		bst.insert(5);
+		bst.insert(3);
+		bst.insert(8);
+		bst.insert(6);
+		//bst.insert(9);
 		
-		System.out.println("Buscar 20: " + bst.search(20));
-        System.out.println("Buscar 90: " + bst.search(90));
-        System.out.println("Buscar 10: " + bst.search(10));
-        System.out.println("Buscar 80: " + bst.search(80));
+		//System.out.println("Buscar 20: " + bst.search(20));
+        //System.out.println("Buscar 90: " + bst.search(90));
+        //System.out.println("Buscar 10: " + bst.search(10));
+        //System.out.println("Buscar 80: " + bst.search(80));
         
-        bst.imprimeArvore(1);
+        bst.printTree(1);
+        bst.printTree(2);
 
 	}
 

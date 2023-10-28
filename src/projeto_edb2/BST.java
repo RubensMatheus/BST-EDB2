@@ -46,16 +46,15 @@ public class BST {
     	return node;
     }
     
-    public void imprimeArvore(int s) {
+    public void printTree(int s) {
     	if(s == 1) {
-    		imprimeFormato1(root, "", height*10);
+    		printFormat1(root, "", height*10);
     	} else {
-    		imprimeFormato2();
+    		printFormat2(root);
     	}
     }
     
-    // incomopleto
-    private void imprimeFormato1(Node node, String space, int quantityDashes) {
+    private void printFormat1(Node node, String space, int quantityDashes) {
     	
     	if(node == null) {
     		return ;
@@ -65,13 +64,32 @@ public class BST {
     	
     	System.out.println(space + node.getValue() + dashes);
     	
-    	imprimeFormato1(node.getLeft(), space + "\t", quantityDashes - 8);
-    	imprimeFormato1(node.getRight(), space + "\t", quantityDashes - 8);
+    	printFormat1(node.getLeft(), space + "\t", quantityDashes - 8);
+    	printFormat1(node.getRight(), space + "\t", quantityDashes - 8);
     }
     
-    private void imprimeFormato2() {
+    private void printFormat2(Node node) {
+    	if(node == null) {
+    		return ;
+    	}
+    	
+    	System.out.print("(" + node.getValue());
+    	
+    	if(node.getLeft() != null) {
+    		System.out.print(" ");
+    		printFormat2(node.getLeft());
+    	} 
+    	
+    	if(node.getRight() != null) {
+    		System.out.print(" ");
+    		printFormat2(node.getRight());
+    	}
+    	
+    	System.out.print(")");
+    	
     	
     }
+    
 
 }
 
