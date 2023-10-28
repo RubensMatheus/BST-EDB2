@@ -48,22 +48,25 @@ public class BST {
     
     public void imprimeArvore(int s) {
     	if(s == 1) {
-    		imprimeFormato1(root);
+    		imprimeFormato1(root, "", height*10);
     	} else {
     		imprimeFormato2();
     	}
     }
     
     // incomopleto
-    private void imprimeFormato1(Node node) {
+    private void imprimeFormato1(Node node, String space, int quantityDashes) {
     	
     	if(node == null) {
     		return ;
     	}
     	
+    	String dashes = String.valueOf('-').repeat(quantityDashes);
     	
-    	imprimeFormato1(node.getLeft());
-    	imprimeFormato1(node.getRight());
+    	System.out.println(space + node.getValue() + dashes);
+    	
+    	imprimeFormato1(node.getLeft(), space + "\t", quantityDashes - 8);
+    	imprimeFormato1(node.getRight(), space + "\t", quantityDashes - 8);
     }
     
     private void imprimeFormato2() {
