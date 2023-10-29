@@ -176,9 +176,81 @@ public class BST {
     }
      */
     
-  
+  //---------------Rubens--------------------------------------
     
+    public int enesimoElemento(int n) {
+        return enesimoElementoRecursivo(root, n);
+    }
+
+    private int enesimoElementoRecursivo(Node node, int n) {
+        if (node == null) {
+            return -1;
+        }
+
+        if (node.getLeftSize() >= n) {
+            return enesimoElementoRecursivo(node.getLeft(), n);
+        } else if (node.getLeftSize() + 1 == n) {
+            return node.getValue();
+        } else {
+            return enesimoElementoRecursivo(node.getRight(), n - node.getLeftSize() - 1);
+        }
+    }
     
+ 
+    public int posicao(int x) {
+        return posicaoRecursiva(root, x);
+    }
+
+    private int posicaoRecursiva(Node node, int x) {
+        if (node == null) {
+            return -1; 
+        }
+
+        if(node.getValue() > x) {
+        	int posicaoEsquerda = posicaoRecursiva(node.getLeft(), x);
+	        if (posicaoEsquerda != -1) {
+	            return posicaoEsquerda;
+	        }
+        } else if (node.getValue() == x) {
+            return tamanhoSubarvore(node.getLeft()) + 1;
+        }else {
+	        int posicaoLadoDireito = posicaoRecursiva(node.getRight(), x);
+	        if (posicaoLadoDireito != -1) {
+	            return tamanhoSubarvore(node.getLeft()) + 1 + posicaoLadoDireito;
+	        }
+        }
+
+       return -1;
+    }
+
+    private int tamanhoSubarvore(Node node) {
+        if (node == null) {
+            return 0;
+        }
+        return node.getLeftSize() + 1 + node.getRightSize();
+    }
+    
+    public int mediana() {
+    	int quantidadeElementos = root.getLeftSize() + root.getRightSize() + 1;
+    	return enesimoElemento((quantidadeElementos+1)/2);
+    }
+    
+    public String pre_ordem() {
+        StringBuilder result = new StringBuilder();
+        preOrdemRecursiva(root, result);
+        return result.toString();
+    }
+
+    private void preOrdemRecursiva(Node node, StringBuilder result) {
+        if (node != null) {
+            result.append(node.getValue()).append(" ");
+
+            preOrdemRecursiva(node.getLeft(), result);
+
+            preOrdemRecursiva(node.getRight(), result);
+        }
+    }
+
 
 }
 
