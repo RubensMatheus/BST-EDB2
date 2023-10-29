@@ -5,6 +5,7 @@ public class Node {
 	private int value;
 	private int leftSize;
 	private int rightSize;
+	//private int sumValue;
 	private Node left;
 	private Node right;
 	
@@ -21,6 +22,7 @@ public class Node {
 		this.right = right;
 	}
 	
+
 	public int getValue() {
 		return value;
 	}

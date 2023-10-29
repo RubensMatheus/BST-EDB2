@@ -4,10 +4,10 @@ public class BST {
 	
 	private Node root;
 	private int height;
-
+	
 	public Node search(int value) {
-        return searchRecursive(root, value);
-    }
+		return searchRecursive(root, value);
+	}
 
 	// auxiliar para busca
     private Node searchRecursive(Node node, int value) {
@@ -24,27 +24,32 @@ public class BST {
     }
     
     public void insert(int value) {
-    	Node newNode = new Node(value);
-    	this.root = insertRecursive(root, newNode, 1);
-    	
+        root = insertRecursive(root, value, 1);
     }
-    
-    private Node insertRecursive(Node node, Node newNode, int currentHeight) {
-    	if(node == null) {
-    		height = Math.max(height, currentHeight);
-    		return newNode;
-    	}
-    	
-    	if(newNode.getValue() < node.getValue()) {
-    		node.setLeft(insertRecursive(node.getLeft(), newNode, currentHeight + 1));
-    		node.setLeftSize(node.getLeftSize() + 1);
-    	} else if(newNode.getValue() > node.getValue()) {
-    		node.setRight(insertRecursive(node.getRight(), newNode, currentHeight + 1));
-    		node.setRightSize(node.getRightSize() + 1);
-    	}
-    	
-    	return node;
+
+    private Node insertRecursive(Node current, int value, int currentHeight) {
+        if (current == null) {
+            height = Math.max(height, currentHeight);
+            return new Node(value);
+        }
+        
+        if (value == current.getValue()) {
+            return current;
+        }
+
+        if (value < current.getValue()) {
+            current.setLeft(insertRecursive(current.getLeft(), value, currentHeight + 1));
+            current.setLeftSize(current.getLeft().getLeftSize() + current.getLeft().getRightSize() + 1);
+            
+        } else {
+            current.setRight(insertRecursive(current.getRight(), value, currentHeight + 1));
+            current.setRightSize(current.getRight().getLeftSize() + current.getRight().getRightSize() + 1);
+        }
+
+        return current;
     }
+
+
     
     public void printTree(int s) {
     	if(s == 1) {
@@ -87,8 +92,30 @@ public class BST {
     	
     	System.out.print(")");
     	
-    	
     }
+    
+    public double average(int x) {
+    	Node node = search(x);
+    	
+    	if(node == null) {
+    		return 0;
+    	}
+    	
+    	int totalNode = node.getLeftSize() + node.getRightSize() + 1;
+    	int totalSum = calculateSum(node);
+    	
+    	return (double) totalSum / totalNode;
+    }
+    
+    private int calculateSum(Node node) {
+    	if(node == null) {
+    		return 0;
+    	}
+    	return node.getValue() + calculateSum(node.getLeft()) + calculateSum(node.getRight());
+    }
+    
+  
+    
     
 
 }

@@ -12,15 +12,20 @@ public class Teste {
 		bst.insert(3);
 		bst.insert(8);
 		bst.insert(6);
-		//bst.insert(9);
+		bst.insert(6);
+		bst.insert(9);
+		bst.insert(7);
+	
 		
-		//System.out.println("Buscar 20: " + bst.search(20));
-        //System.out.println("Buscar 90: " + bst.search(90));
-        //System.out.println("Buscar 10: " + bst.search(10));
-        //System.out.println("Buscar 80: " + bst.search(80));
+		System.out.println("Buscar 5: " + bst.search(5));
+        System.out.println("Buscar 3: " + bst.search(3));
+        System.out.println("Buscar 8: " + bst.search(8));
+        System.out.println("Buscar 6: " + bst.search(6));
         
-        bst.printTree(1);
-        bst.printTree(2);
+       bst.printTree(1);
+        //bst.printTree(2);
+        
+        System.out.println("Média a partir do 5 "+bst.average(5));
 
 	}
 
