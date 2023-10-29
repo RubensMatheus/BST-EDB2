@@ -32,16 +32,12 @@ public class BST {
             height = Math.max(height, currentHeight);
             return new Node(value);
         }
-        
-        if (value == current.getValue()) {
-            return current;
-        }
 
         if (value < current.getValue()) {
             current.setLeft(insertRecursive(current.getLeft(), value, currentHeight + 1));
             current.setLeftSize(current.getLeft().getLeftSize() + current.getLeft().getRightSize() + 1);
             
-        } else {
+        } else if (value > current.getValue()){
             current.setRight(insertRecursive(current.getRight(), value, currentHeight + 1));
             current.setRightSize(current.getRight().getLeftSize() + current.getRight().getRightSize() + 1);
         }
