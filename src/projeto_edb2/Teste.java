@@ -13,8 +13,7 @@ public class Teste {
 		bst.insert(8);
 		bst.insert(6);
 		bst.insert(6);
-		bst.insert(9);
-		bst.insert(7);
+	
 	
 		
 		System.out.println("Buscar 5: " + bst.search(5));

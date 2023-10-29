@@ -27,22 +27,22 @@ public class BST {
         root = insertRecursive(root, value, 1);
     }
 
-    private Node insertRecursive(Node current, int value, int currentHeight) {
-        if (current == null) {
+    private Node insertRecursive(Node node, int value, int currentHeight) {
+        if (node == null) {
             height = Math.max(height, currentHeight);
             return new Node(value);
         }
 
-        if (value < current.getValue()) {
-            current.setLeft(insertRecursive(current.getLeft(), value, currentHeight + 1));
-            current.setLeftSize(current.getLeft().getLeftSize() + current.getLeft().getRightSize() + 1);
+        if (value < node.getValue()) {
+            node.setLeft(insertRecursive(node.getLeft(), value, currentHeight + 1));
+            node.setLeftSize(node.getLeft().getLeftSize() + node.getLeft().getRightSize() + 1);
             
-        } else if (value > current.getValue()){
-            current.setRight(insertRecursive(current.getRight(), value, currentHeight + 1));
-            current.setRightSize(current.getRight().getLeftSize() + current.getRight().getRightSize() + 1);
+        } else if (value > node.getValue()){
+            node.setRight(insertRecursive(node.getRight(), value, currentHeight + 1));
+            node.setRightSize(node.getRight().getLeftSize() + node.getRight().getRightSize() + 1);
         }
 
-        return current;
+        return node;
     }
 
 
