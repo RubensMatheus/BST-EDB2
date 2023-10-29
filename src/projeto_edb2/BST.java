@@ -3,13 +3,11 @@ package projeto_edb2;
 public class BST {
 	
 	private Node root;
-	private int height;
 	
 	public Node search(int value) {
 		return searchRecursive(root, value);
 	}
 
-	// auxiliar para busca
     private Node searchRecursive(Node node, int value) {
         if (node == null || node.getValue() == value) {
             return node;
@@ -22,84 +20,118 @@ public class BST {
         return searchRecursive(node.getRight(), value);
        
     }
-    
-    public void insert(int value) {
-        root = insertRecursive(root, value, 1);
-    }
-
-    private Node insertRecursive(Node node, int value, int currentHeight) {
-        if (node == null) {
-            height = Math.max(height, currentHeight);
-            return new Node(value);
-        }
-
-        if (value < node.getValue()) {
-            node.setLeft(insertRecursive(node.getLeft(), value, currentHeight + 1));
-            node.setLeftSize(node.getLeft().getLeftSize() + node.getLeft().getRightSize() + 1); 
-            
-        } else if (value > node.getValue()){
-            node.setRight(insertRecursive(node.getRight(), value, currentHeight + 1));
-            node.setRightSize(node.getRight().getLeftSize() + node.getRight().getRightSize() + 1);
-        }
-
-
-        return node;
-    }
 
     
-    /*public boolean insert(int value) {
+    public boolean insert(int value) {
     	if(root == null) {
     		root = new Node(value);
-    		height = 1;
     		return true;
     	} else {
-    		return insertRecursive(root, value, 1);
+    		return insertRecursive(root, value);
     	}
-    }*/
+    }
 
-   /* private boolean insertRecursive(Node node, int value, int currentHeight) {
+   private boolean insertRecursive(Node node, int value) {
     	boolean inserted = false;
 
         if (value < node.getValue()) {
         	if(node.getLeft() == null) {
         		node.setLeft(new Node(value));
-        		height = Math.max(height, currentHeight + 1);
                 inserted = true;
         	} else {
-        		inserted = insertRecursive(node.getLeft(), value, currentHeight+1);
+        		inserted = insertRecursive(node.getLeft(), value);
         	}
         	
         	if(inserted) {
         		node.setLeftSize(node.getLeftSize()+ 1);
-        		//node.setSumValue(value + node.getSumValue());
         	}
             
         } else if (value > node.getValue()){
         	if(node.getRight() == null) {
         		node.setRight(new Node(value));
-        		height = Math.max(height, currentHeight + 1);
                 inserted = true;
         	}else {
-        		inserted = insertRecursive(node.getRight(), value, currentHeight + 1);
+        		inserted = insertRecursive(node.getRight(), value);
         	}
         	
         	if(inserted) {
         		node.setRightSize(node.getRightSize() + 1);
-        		//node.setSumValue(value + node.getSumValue());
         	}
         }
+        
+        node.updateHeight();
 
         return inserted;
-    }*/
+    }
 
-  
+
     
- 
+    public boolean remove(int value) {
+        return removeRecursive(this.root,null, value);
+    }
+  
 
+    private boolean removeRecursive(Node node, Node parent, int value) {
+    	if(node == null) {
+    		return false;
+    	}
+    	
+		boolean removed = false;
+
+		if (value < node.getValue()) {
+			removed = removeRecursive(node.getLeft(), node, value);
+			
+			if(removed) {
+				node.setLeftSize(node.getLeftSize() - 1);
+			}
+		} else if (value > node.getValue()) {
+			removed = removeRecursive(node.getRight(), node, value);
+			
+			if(removed) {
+				node.setRightSize(node.getRightSize() - 1);
+			}
+		} else {
+			// 1: Folha ou tem um filho
+			if (node.getRight() == null || node.getLeft() == null) { 
+		        Node childNode = (node.getLeft() != null) ? node.getLeft() : node.getRight();
+		        
+		        if (parent == null) {
+		            root = childNode;
+		        } else if (parent.getLeft() == node) {
+		            parent.setLeft(childNode);
+		        } else if (parent.getRight() == node) {
+		            parent.setRight(childNode);
+		        }
+		    } else { //2: Tem dois filhos
+		    	Node predecessor = findPredecessor(node.getLeft());
+		    	node.setValue(predecessor.getValue());
+		    	removeRecursive(node.getLeft(), node, predecessor.getValue());
+				node.setLeftSize(node.getLeftSize() - 1);
+		    	
+		    }
+			
+	        return true;
+
+		}
+		
+		node.updateHeight();
+		return removed;
+		
+    }
+
+
+    private Node findPredecessor(Node node) {
+        while (node.getRight() != null) {
+            node = node.getRight();
+        }
+        return node;
+    }
     
     public void printTree(int s) {
+    	
+    	System.out.println("altura: "+root.getHeight());
     	if(s == 1) {
-    		printFormat1(root, "", height*10); // se add campo altura em node, modificar
+    		printFormat1(root, "", root.getHeight()*10); 
     	} else {
     		printFormat2(root);
     	}

@@ -8,19 +8,21 @@ public class Node {
 	//private int sumValue;
 	private Node left;
 	private Node right;
-	//int height;
+	int height;
 	
 	public Node(int value) {
 		 this.value = value;
+		 this.height = 1;
 	 }
 	
-	public Node(int value, int leftSize, int rightSize, Node left, Node right) {
+	public Node(int value, int leftSize, int rightSize, Node left, Node right, int height) {
 		super();
 		this.value = value;
 		this.leftSize = leftSize;
 		this.rightSize = rightSize;
 		this.left = left;
 		this.right = right;
+		this.height = height;
 	}
 	
 
@@ -55,16 +57,27 @@ public class Node {
 		this.right = right;
 	}
 	
-	
-	/*public int getSumValue() {
-		return sumValue;
+
+	public int getHeight() {
+		return height;
 	}
 
-	public void setSumValue(int sumValue) {
-		this.sumValue = sumValue;
-	}*/
+	public void setHeight(int height) {
+		this.height = height;
+	}
 	
-	
+	public void updateHeight() {
+		this.height = 1 + Math.max(height(left), height(right));
+	}
+
+	private int height(Node node) {
+		if(node == null) {
+			return 0;
+		} 
+		
+		return node.getHeight();
+		
+	}
 
 	@Override
 	public String toString() {
