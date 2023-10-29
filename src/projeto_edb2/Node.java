@@ -54,6 +54,15 @@ public class Node {
 		this.right = right;
 	}
 	
+	
+	/*public int getSumValue() {
+		return sumValue;
+	}
+
+	public void setSumValue(int sumValue) {
+		this.sumValue = sumValue;
+	}*/
+
 	@Override
 	public String toString() {
         return "Node [value=" + value + ", leftSize=" + leftSize + ", rightSize=" + rightSize + "]";

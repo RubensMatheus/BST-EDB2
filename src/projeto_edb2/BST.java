@@ -42,9 +42,19 @@ public class BST {
             node.setRightSize(node.getRight().getLeftSize() + node.getRight().getRightSize() + 1);
         }
 
+
         return node;
     }
 
+    public void remove(int value) {
+    	removeRecursive(root, value);
+    }
+    
+    private void removeRecursive(Node node, int value) {
+    	if(node.getValue() == value) {
+    		
+    	}
+    }
 
     
     public void printTree(int s) {
@@ -109,6 +119,18 @@ public class BST {
     	}
     	return node.getValue() + calculateSum(node.getLeft()) + calculateSum(node.getRight());
     }
+    
+    /*
+      public double average(int x) {
+    	Node node = search(x);
+    	
+    	if(node == null) {
+    		return 0;
+    	}
+    	int totalNode = node.getLeftSize() + node.getRightSize() + 1;
+    	return (double) (node.getSumValue() + node.getValue()) / totalNode;
+    }
+     */
     
   
     
