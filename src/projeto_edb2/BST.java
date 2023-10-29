@@ -35,7 +35,7 @@ public class BST {
 
         if (value < node.getValue()) {
             node.setLeft(insertRecursive(node.getLeft(), value, currentHeight + 1));
-            node.setLeftSize(node.getLeft().getLeftSize() + node.getLeft().getRightSize() + 1);
+            node.setLeftSize(node.getLeft().getLeftSize() + node.getLeft().getRightSize() + 1); 
             
         } else if (value > node.getValue()){
             node.setRight(insertRecursive(node.getRight(), value, currentHeight + 1));
@@ -45,6 +45,50 @@ public class BST {
 
         return node;
     }
+    
+    /*public void insert(int value) {
+    	if(root == null) {
+    		root = new Node(value);
+    		height = 1;
+    	} else {
+    		insertRecursive(root, value, 1);
+    	}
+    }*/
+
+    /*private boolean insertRecursive(Node node, int value, int nodeHeight) {
+    	boolean inserted = false;
+
+        if (value < node.getValue()) {
+        	if(node.getLeft() == null) {
+        		node.setLeft(new Node(value));
+        		height = Math.max(height, nodeHeight + 1);
+                inserted = true;
+        	} else {
+        		inserted = insertRecursive(node.getLeft(), value, nodeHeight+1);
+        	}
+        	
+        	if(inserted) {
+        		node.setLeftSize(node.getLeftSize()+ 1);
+        		node.setSumValue(value + node.getSumValue());
+        	}
+            
+        } else if (value > node.getValue()){
+        	if(node.getRight() == null) {
+        		node.setRight(new Node(value));
+        		height = Math.max(height, nodeHeight + 1);
+                inserted = true;
+        	}else {
+        		inserted = insertRecursive(node.getRight(), value, nodeHeight+1);
+        	}
+        	
+        	if(inserted) {
+        		node.setRightSize(node.getRightSize() + 1);
+        		node.setSumValue(value + node.getSumValue());
+        	}
+        }
+
+        return inserted;
+    }*/
 
     public void remove(int value) {
     	removeRecursive(root, value);
