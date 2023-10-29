@@ -90,59 +90,9 @@ public class BST {
         }
 
         return inserted;
-    }/*
-
-    /*public boolean remove(int value) {
-        boolean[] wasRemoved = new boolean[1];
-        this.root = remove(this.root, value, wasRemoved);
-        if (wasRemoved[0]) {
-            this.height = calculateHeight(this.root);
-        }
-        return wasRemoved[0];
-    }
-
-    private boolean remove(Node node, int value) {
-    	
-    	boolean removed = false;
-        if (node == null) {
-            wasRemoved[0] = false;
-            return null;
-        }
-
-        if (value < node.getValue()) {
-            node.setLeft(remove(node.getLeft(), value, wasRemoved));
-            if (wasRemoved[0]) {
-                node.setLeftSize(node.getLeftSize() - 1);
-            }
-        } else if (value > node.getValue()) {
-            node.setRight(remove(node.getRight(), value, wasRemoved));
-            if (wasRemoved[0]) {
-                node.setRightSize(node.getRightSize() - 1);
-            }
-        } else {
-            wasRemoved[0] = true;
-            if (node.getLeft() == null || node.getRight() == null) {
-                Node temp = (node.getLeft() != null) ? node.getLeft() : node.getRight();
-                node = temp;
-            } else {
-                Node minNode = minValueNode(node.getRight());
-                node.setValue(minNode.getValue());
-                node.setRight(remove(node.getRight(), minNode.getValue(), wasRemoved));
-                if (wasRemoved[0]) {
-                    node.setRightSize(node.getRightSize() - 1);
-                }
-            }
-        }
-        return node;
-    }
-
-    private Node minValueNode(Node node) {
-        Node current = node;
-        while (current.getLeft() != null) {
-            current = current.getLeft();
-        }
-        return current;
     }*/
+
+  
     
  
 
