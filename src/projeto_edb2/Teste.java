@@ -14,7 +14,7 @@ public class Teste {
 		//bst.insert(8);
 		//bst.insert(6);
 		bst.insert(2);
-		//bst.insert(9);
+		bst.insert(9);
 		//bst.insert(7);
 		
 		
@@ -27,10 +27,12 @@ public class Teste {
         System.out.println("Buscar 8: " + bst.search(8));
         System.out.println("Buscar 6: " + bst.search(6));
         
-        bst.remove(5);
+       bst.remove(5);
        bst.remove(20);
+       bst.remove(3);
 		//bst.remove(10);
 		// bst.remove(9);
+       bst.insert(3);
         
         bst.printTree(1);
        	bst.printTree(2);

@@ -81,7 +81,8 @@ public class Node {
 
 	@Override
 	public String toString() {
-        return "Node [value=" + value + ", leftSize=" + leftSize + ", rightSize=" + rightSize + "]";
+        return "Node [value=" + value + ", leftSize=" + leftSize + ", rightSize=" 
+        		+ rightSize + ", height=" + height + "]";
     }
 	
 
