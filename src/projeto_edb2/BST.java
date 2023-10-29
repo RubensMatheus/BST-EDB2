@@ -45,65 +45,111 @@ public class BST {
 
         return node;
     }
+
     
-    /*public void insert(int value) {
+    /*public boolean insert(int value) {
     	if(root == null) {
     		root = new Node(value);
     		height = 1;
+    		return true;
     	} else {
-    		insertRecursive(root, value, 1);
+    		return insertRecursive(root, value, 1);
     	}
     }*/
 
-    /*private boolean insertRecursive(Node node, int value, int nodeHeight) {
+   /* private boolean insertRecursive(Node node, int value, int currentHeight) {
     	boolean inserted = false;
 
         if (value < node.getValue()) {
         	if(node.getLeft() == null) {
         		node.setLeft(new Node(value));
-        		height = Math.max(height, nodeHeight + 1);
+        		height = Math.max(height, currentHeight + 1);
                 inserted = true;
         	} else {
-        		inserted = insertRecursive(node.getLeft(), value, nodeHeight+1);
+        		inserted = insertRecursive(node.getLeft(), value, currentHeight+1);
         	}
         	
         	if(inserted) {
         		node.setLeftSize(node.getLeftSize()+ 1);
-        		node.setSumValue(value + node.getSumValue());
+        		//node.setSumValue(value + node.getSumValue());
         	}
             
         } else if (value > node.getValue()){
         	if(node.getRight() == null) {
         		node.setRight(new Node(value));
-        		height = Math.max(height, nodeHeight + 1);
+        		height = Math.max(height, currentHeight + 1);
                 inserted = true;
         	}else {
-        		inserted = insertRecursive(node.getRight(), value, nodeHeight+1);
+        		inserted = insertRecursive(node.getRight(), value, currentHeight + 1);
         	}
         	
         	if(inserted) {
         		node.setRightSize(node.getRightSize() + 1);
-        		node.setSumValue(value + node.getSumValue());
+        		//node.setSumValue(value + node.getSumValue());
         	}
         }
 
         return inserted;
-    }*/
+    }/*
 
-    public void remove(int value) {
-    	removeRecursive(root, value);
+    /*public boolean remove(int value) {
+        boolean[] wasRemoved = new boolean[1];
+        this.root = remove(this.root, value, wasRemoved);
+        if (wasRemoved[0]) {
+            this.height = calculateHeight(this.root);
+        }
+        return wasRemoved[0];
     }
+
+    private boolean remove(Node node, int value) {
+    	
+    	boolean removed = false;
+        if (node == null) {
+            wasRemoved[0] = false;
+            return null;
+        }
+
+        if (value < node.getValue()) {
+            node.setLeft(remove(node.getLeft(), value, wasRemoved));
+            if (wasRemoved[0]) {
+                node.setLeftSize(node.getLeftSize() - 1);
+            }
+        } else if (value > node.getValue()) {
+            node.setRight(remove(node.getRight(), value, wasRemoved));
+            if (wasRemoved[0]) {
+                node.setRightSize(node.getRightSize() - 1);
+            }
+        } else {
+            wasRemoved[0] = true;
+            if (node.getLeft() == null || node.getRight() == null) {
+                Node temp = (node.getLeft() != null) ? node.getLeft() : node.getRight();
+                node = temp;
+            } else {
+                Node minNode = minValueNode(node.getRight());
+                node.setValue(minNode.getValue());
+                node.setRight(remove(node.getRight(), minNode.getValue(), wasRemoved));
+                if (wasRemoved[0]) {
+                    node.setRightSize(node.getRightSize() - 1);
+                }
+            }
+        }
+        return node;
+    }
+
+    private Node minValueNode(Node node) {
+        Node current = node;
+        while (current.getLeft() != null) {
+            current = current.getLeft();
+        }
+        return current;
+    }*/
     
-    private void removeRecursive(Node node, int value) {
-    	if(node.getValue() == value) {
-    		
-    	}
-    }
+ 
 
     
     public void printTree(int s) {
     	if(s == 1) {
-    		printFormat1(root, "", height*10);
+    		printFormat1(root, "", height*10); // se add campo altura em node, modificar
     	} else {
     		printFormat2(root);
     	}
@@ -114,13 +160,15 @@ public class BST {
     	if(node == null) {
     		return ;
     	}
-    	
-    	String dashes = String.valueOf('-').repeat(quantityDashes);
+
+    	int quantityDigits = Integer.toString(Math.abs(node.getValue())).length();
+    	String dashes = String.valueOf('-').repeat(quantityDashes - quantityDigits);
     	
     	System.out.println(space + node.getValue() + dashes);
     	
-    	printFormat1(node.getLeft(), space + "\t", quantityDashes - 8);
+    	printFormat1(node.getLeft(), space + "\t", quantityDashes - 8 );
     	printFormat1(node.getRight(), space + "\t", quantityDashes - 8);
+   
     }
     
     private void printFormat2(Node node) {
@@ -152,16 +200,20 @@ public class BST {
     	}
     	
     	int totalNode = node.getLeftSize() + node.getRightSize() + 1;
-    	int totalSum = calculateSum(node);
+    	double totalSum = calculateSum(node);
     	
-    	return (double) totalSum / totalNode;
+    	return totalSum/totalNode;
     }
     
     private int calculateSum(Node node) {
     	if(node == null) {
     		return 0;
     	}
-    	return node.getValue() + calculateSum(node.getLeft()) + calculateSum(node.getRight());
+    	
+    	int totalLeft = calculateSum(node.getLeft());
+    	int totalRight = calculateSum(node.getRight());
+    	
+    	return node.getValue() + totalLeft + totalRight;
     }
     
     /*

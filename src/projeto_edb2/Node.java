@@ -8,6 +8,7 @@ public class Node {
 	//private int sumValue;
 	private Node left;
 	private Node right;
+	//int height;
 	
 	public Node(int value) {
 		 this.value = value;
@@ -62,6 +63,8 @@ public class Node {
 	public void setSumValue(int sumValue) {
 		this.sumValue = sumValue;
 	}*/
+	
+	
 
 	@Override
 	public String toString() {
