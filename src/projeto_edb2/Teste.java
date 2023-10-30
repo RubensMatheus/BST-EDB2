@@ -10,7 +10,7 @@ public class Teste {
 		BST bst = new BST();
 		bst.insert(5);
 		bst.insert(3);
-		//bst.insert(4);
+		bst.insert(4);
 		//bst.insert(8);
 		//bst.insert(6);
 		bst.insert(2);
@@ -29,10 +29,12 @@ public class Teste {
         
        bst.remove(5);
        bst.remove(20);
+       
+       bst.printTree(1);
        bst.remove(3);
 		//bst.remove(10);
 		// bst.remove(9);
-       bst.insert(3);
+       //bst.insert(3);
         
         bst.printTree(1);
        	bst.printTree(2);

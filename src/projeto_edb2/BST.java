@@ -91,10 +91,17 @@ public class BST {
 				node.setRightSize(node.getRightSize() - 1);
 			}
 		} else {
-			// 1: Folha ou tem um filho
-			if (node.getRight() == null || node.getLeft() == null) { 
-		        Node childNode = (node.getLeft() != null) ? node.getLeft() : node.getRight();
-		        
+			// 1: Tem dois filhos
+			if (node.getRight() != null && node.getLeft() != null) { 
+				
+				Node predecessor = findPredecessor(node.getLeft());
+		    	node.setValue(predecessor.getValue());
+		    	removeRecursive(node.getLeft(), node, predecessor.getValue());
+				node.setLeftSize(node.getLeftSize() - 1);
+				
+		    } else { //2: Folha ou tem um filho		 
+		    	Node childNode = (node.getLeft() != null) ? node.getLeft() : node.getRight();
+			        
 		        if (parent == null) {
 		            root = childNode;
 		        } else if (parent.getLeft() == node) {
@@ -102,11 +109,6 @@ public class BST {
 		        } else if (parent.getRight() == node) {
 		            parent.setRight(childNode);
 		        }
-		    } else { //2: Tem dois filhos
-		    	Node predecessor = findPredecessor(node.getLeft());
-		    	node.setValue(predecessor.getValue());
-		    	removeRecursive(node.getLeft(), node, predecessor.getValue());
-				node.setLeftSize(node.getLeftSize() - 1);
 		    	
 		    }
 			
