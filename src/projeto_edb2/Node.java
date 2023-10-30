@@ -69,6 +69,10 @@ public class Node {
 	public void updateHeight() {
 		this.height = 1 + Math.max(height(left), height(right));
 	}
+	
+	public void updateLeft() {
+		this.leftSize = 1 + Math.max(height(left), height(right));
+	}
 
 	private int height(Node node) {
 		if(node == null) {

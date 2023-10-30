@@ -26,42 +26,34 @@ public class BST {
     	if(root == null) {
     		root = new Node(value);
     		return true;
-    	} else {
-    		return insertRecursive(root, value);
-    	}
+    	} 
+    	
+    	return insertRecursive(root, value);
+    	
     }
 
    private boolean insertRecursive(Node node, int value) {
-    	boolean inserted = false;
-
-        if (value < node.getValue()) {
-        	if(node.getLeft() == null) {
-        		node.setLeft(new Node(value));
-                inserted = true;
-        	} else {
-        		inserted = insertRecursive(node.getLeft(), value);
-        	}
-        	
-        	if(inserted) {
-        		node.setLeftSize(node.getLeftSize()+ 1);
-        	}
-            
-        } else if (value > node.getValue()){
-        	if(node.getRight() == null) {
-        		node.setRight(new Node(value));
-                inserted = true;
-        	}else {
-        		inserted = insertRecursive(node.getRight(), value);
-        	}
-        	
-        	if(inserted) {
-        		node.setRightSize(node.getRightSize() + 1);
-        	}
-        }
-        
-        node.updateHeight();
-
-        return inserted;
+	   
+	   if (value < node.getValue()) {
+	        if (node.getLeft() == null) {
+	            node.setLeft(new Node(value));
+	        } else if (!insertRecursive(node.getLeft(), value)) {
+	            return false;
+	        }
+	        node.setLeftSize(node.getLeftSize() + 1);
+	    } else if (value > node.getValue()) {
+	        if (node.getRight() == null) {
+	            node.setRight(new Node(value));
+	        } else if (!insertRecursive(node.getRight(), value)) {
+	            return false;
+	        }
+	        node.setRightSize(node.getRightSize() + 1);
+	    } else {
+	        return false;
+	    }
+	   
+	    node.updateHeight();
+	    return true;
     }
 
 
@@ -75,19 +67,14 @@ public class BST {
     	if(node == null) {
     		return false;
     	}
-    	
-		boolean removed = false;
 
 		if (value < node.getValue()) {
-			removed = removeRecursive(node.getLeft(), node, value);
 			
-			if(removed) {
+			if(removeRecursive(node.getLeft(), node, value)) {
 				node.setLeftSize(node.getLeftSize() - 1);
 			}
 		} else if (value > node.getValue()) {
-			removed = removeRecursive(node.getRight(), node, value);
-			
-			if(removed) {
+			if(removeRecursive(node.getRight(), node, value)) {
 				node.setRightSize(node.getRightSize() - 1);
 			}
 		} else {
@@ -102,7 +89,7 @@ public class BST {
 		    } else { //2: Folha ou tem um filho		 
 		    	Node childNode = (node.getLeft() != null) ? node.getLeft() : node.getRight();
 			        
-		        if (parent == null) {
+	    		if (parent == null) {
 		            root = childNode;
 		        } else if (parent.getLeft() == node) {
 		            parent.setLeft(childNode);
@@ -117,7 +104,8 @@ public class BST {
 		}
 		
 		node.updateHeight();
-		return removed;
+		
+		return false;
 		
     }
 

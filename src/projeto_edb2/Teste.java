@@ -24,7 +24,7 @@ public class Teste {
 		
 		System.out.println("Buscar 5: " + bst.search(5));
         System.out.println("Buscar 3: " + bst.search(3));
-        System.out.println("Buscar 8: " + bst.search(8));
+        System.out.println("Buscar 4: " + bst.search(4));
         System.out.println("Buscar 6: " + bst.search(6));
         
        bst.remove(5);
@@ -39,8 +39,8 @@ public class Teste {
         bst.printTree(1);
        	bst.printTree(2);
         
-       	System.out.println("Buscar 5: " + bst.search(5));
-        System.out.println("Buscar 3: " + bst.search(3));
+       	System.out.println("Buscar 9: " + bst.search(9));
+        System.out.println("Buscar 4: " + bst.search(4));
         System.out.println("Buscar 8: " + bst.search(8));
         System.out.println("Buscar 6: " + bst.search(6));
         
