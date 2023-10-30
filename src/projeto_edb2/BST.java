@@ -148,7 +148,7 @@ public class BST {
     	
     	System.out.println(space + node.getValue() + dashes);
     	
-    	printFormat1(node.getLeft(), space + "\t", quantityDashes - 8 );
+    	printFormat1(node.getLeft(), space + "\t", quantityDashes - 8);
     	printFormat1(node.getRight(), space + "\t", quantityDashes - 8);
    
     }
@@ -184,7 +184,7 @@ public class BST {
     	int totalNode = node.getLeftSize() + node.getRightSize() + 1;
     	double totalSum = calculateSum(node);
     	
-    	return totalSum/totalNode;
+    	return (double) totalSum/totalNode;
     }
     
     private int calculateSum(Node node) {

@@ -42,7 +42,7 @@ public class Teste {
         System.out.println("Buscar 8: " + bst.search(8));
         System.out.println("Buscar 6: " + bst.search(6));
         
-        System.out.println("\nMédia a partir do 5 "+bst.average(5));
+        System.out.println("\nMédia a partir do 5 "+bst.average(2));
         
         System.out.println("bucando o primeiro elemento: " + bst.enesimoElemento(1));
         System.out.println("bucando o segundo elemento: " + bst.enesimoElemento(2));
