@@ -35,24 +35,31 @@ public class BST {
    private boolean insertRecursive(Node node, int value) {
 	   
 	   if (value < node.getValue()) {
+		   
 	        if (node.getLeft() == null) {
 	            node.setLeft(new Node(value));
 	        } else if (!insertRecursive(node.getLeft(), value)) {
 	            return false;
 	        }
+	        
 	        node.setLeftSize(node.getLeftSize() + 1);
+	        
 	    } else if (value > node.getValue()) {
+	    	
 	        if (node.getRight() == null) {
 	            node.setRight(new Node(value));
 	        } else if (!insertRecursive(node.getRight(), value)) {
 	            return false;
 	        }
+	        
 	        node.setRightSize(node.getRightSize() + 1);
+	        
 	    } else {
 	        return false;
 	    }
 	   
 	    node.updateHeight();
+	    
 	    return true;
     }
 
@@ -73,6 +80,7 @@ public class BST {
 			if(removeRecursive(node.getLeft(), node, value)) {
 				node.setLeftSize(node.getLeftSize() - 1);
 			}
+			
 		} else if (value > node.getValue()) {
 			if(removeRecursive(node.getRight(), node, value)) {
 				node.setRightSize(node.getRightSize() - 1);
