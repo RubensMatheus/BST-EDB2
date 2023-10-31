@@ -58,6 +58,7 @@ public class BST {
 	        return false;
 	    }
 	   
+	   	node.updateSubtreeSum();
 	    node.updateHeight();
 	    
 	    return true;
@@ -111,6 +112,7 @@ public class BST {
 
 		}
 		
+		node.updateSubtreeSum();
 		node.updateHeight();
 		
 		return false;
@@ -172,7 +174,7 @@ public class BST {
     	
     }
     
-    public double average(int x) {
+   /* public double average(int x) {
     	Node node = search(x);
     	
     	if(node == null) {
@@ -194,9 +196,9 @@ public class BST {
     	int totalRight = calculateSum(node.getRight());
     	
     	return node.getValue() + totalLeft + totalRight;
-    }
+    }*/
     
-    /*
+    
       public double average(int x) {
     	Node node = search(x);
     	
@@ -204,9 +206,9 @@ public class BST {
     		return 0;
     	}
     	int totalNode = node.getLeftSize() + node.getRightSize() + 1;
-    	return (double) (node.getSumValue() + node.getValue()) / totalNode;
+    	return (double) node.getSubtreeSum() / totalNode;
     }
-     */
+     
     
   //---------------Rubens--------------------------------------
     

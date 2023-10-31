@@ -8,20 +8,23 @@ public class Teste {
 
 	public static void main(String[] args) {
 		BST bst = new BST();
-		bst.insert(5);
+		bst.insert(5); 
+		System.out.println("\nMédia a partir do 5 "+bst.average(5));
+		 bst.printTree(1);
 		bst.insert(3);
 		bst.insert(4);
 		//bst.insert(8);
-		//bst.insert(6);
-		bst.insert(2);
-		bst.insert(9);
+		bst.insert(6);
+		bst.insert(6);
+		//bst.insert(2);
+		//bst.insert(9);
 		//bst.insert(7);
 		
 		
 	    bst.printTree(1);
 	
 	
-		
+	    System.out.println("\nMédia a partir do 5 "+bst.average(5));
 		System.out.println("Buscar 5: " + bst.search(5));
         System.out.println("Buscar 3: " + bst.search(3));
         System.out.println("Buscar 4: " + bst.search(4));
@@ -29,8 +32,13 @@ public class Teste {
         
        bst.remove(5);
        bst.remove(20);
+       bst.remove(20);
+       bst.remove(20);
        
+       System.out.println("\nMédia a partir do 4 "+bst.average(4));
        bst.printTree(1);
+       
+       
        bst.remove(3);
 		//bst.remove(10);
 		// bst.remove(9);
@@ -44,7 +52,6 @@ public class Teste {
         System.out.println("Buscar 8: " + bst.search(8));
         System.out.println("Buscar 6: " + bst.search(6));
         
-        System.out.println("\nMédia a partir do 5 "+bst.average(2));
         
         System.out.println("bucando o primeiro elemento: " + bst.enesimoElemento(1));
         System.out.println("bucando o segundo elemento: " + bst.enesimoElemento(2));

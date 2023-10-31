@@ -5,7 +5,7 @@ public class Node {
 	private int value;
 	private int leftSize;
 	private int rightSize;
-	//private int sumValue;
+	private int subtreeSum;
 	private Node left;
 	private Node right;
 	int height;
@@ -13,6 +13,7 @@ public class Node {
 	public Node(int value) {
 		 this.value = value;
 		 this.height = 1;
+		 this.subtreeSum = value;
 	 }
 	
 	public Node(int value, int leftSize, int rightSize, Node left, Node right, int height) {
@@ -57,36 +58,36 @@ public class Node {
 		this.right = right;
 	}
 	
-
 	public int getHeight() {
 		return height;
 	}
-
-	public void setHeight(int height) {
-		this.height = height;
+	
+	public int getSubtreeSum() {
+	    return subtreeSum;
 	}
 	
+	public void updateSubtreeSum() {
+	    this.subtreeSum = value + subtreeSum(left) + subtreeSum(right);
+	}
+
+	private int subtreeSum(Node node) {
+	    return (node == null) ? 0 : node.getSubtreeSum();
+	}
+
+
 	public void updateHeight() {
-		this.height = 1 + Math.max(height(left), height(right));
-	}
-	
-	public void updateLeft() {
-		this.leftSize = 1 + Math.max(height(left), height(right));
-	}
+        this.height = 1 + Math.max(height(left), height(right));
+    }
 
-	private int height(Node node) {
-		if(node == null) {
-			return 0;
-		} 
-		
-		return node.getHeight();
-		
-	}
+    private int height(Node node) {
+        return (node == null) ? 0 : node.getHeight();
+    }
+
 
 	@Override
 	public String toString() {
         return "Node [value=" + value + ", leftSize=" + leftSize + ", rightSize=" 
-        		+ rightSize + ", height=" + height + "]";
+        		+ rightSize + ", height=" + height +  ", sumValue=" + subtreeSum + "]";
     }
 	
 
