@@ -212,79 +212,108 @@ public class BST {
     
   //---------------Rubens--------------------------------------
     
-    public int enesimoElemento(int n) {
-        return enesimoElementoRecursivo(root, n);
+    public int nthElement(int n) {
+        return nthElementRecursive(root, n);
     }
 
-    private int enesimoElementoRecursivo(Node node, int n) {
+    private int nthElementRecursive(Node node, int n) {
         if (node == null) {
             return -1;
         }
 
         if (node.getLeftSize() >= n) {
-            return enesimoElementoRecursivo(node.getLeft(), n);
+            return nthElementRecursive(node.getLeft(), n);
         } else if (node.getLeftSize() + 1 == n) {
             return node.getValue();
         } else {
-            return enesimoElementoRecursivo(node.getRight(), n - node.getLeftSize() - 1);
+            return nthElementRecursive(node.getRight(), n - node.getLeftSize() - 1);
         }
     }
     
  
-    public int posicao(int x) {
-        return posicaoRecursiva(root, x);
+    public int position(int x) {
+        return positionRecursive(root, x);
     }
 
-    private int posicaoRecursiva(Node node, int x) {
+    private int positionRecursive(Node node, int x) {
         if (node == null) {
             return -1; 
         }
 
         if(node.getValue() > x) {
-        	int posicaoEsquerda = posicaoRecursiva(node.getLeft(), x);
-	        if (posicaoEsquerda != -1) {
-	            return posicaoEsquerda;
+        	int leftPosition = positionRecursive(node.getLeft(), x);
+	        if (leftPosition != -1) {
+	            return leftPosition;
 	        }
         } else if (node.getValue() == x) {
-            return tamanhoSubarvore(node.getLeft()) + 1;
+            return subtreeSize(node.getLeft()) + 1;
         }else {
-	        int posicaoLadoDireito = posicaoRecursiva(node.getRight(), x);
-	        if (posicaoLadoDireito != -1) {
-	            return tamanhoSubarvore(node.getLeft()) + 1 + posicaoLadoDireito;
+	        int rightPosition = positionRecursive(node.getRight(), x);
+	        if (rightPosition != -1) {
+	            return subtreeSize(node.getLeft()) + 1 + rightPosition;
 	        }
         }
 
        return -1;
     }
 
-    private int tamanhoSubarvore(Node node) {
+    private int subtreeSize(Node node) {
         if (node == null) {
             return 0;
         }
         return node.getLeftSize() + 1 + node.getRightSize();
     }
     
-    public int mediana() {
-    	int quantidadeElementos = root.getLeftSize() + root.getRightSize() + 1;
-    	return enesimoElemento((quantidadeElementos+1)/2);
+    public int median() {
+    	int numberOfElements = subtreeSize(root);
+    	if(numberOfElements % 2 == 0) {
+        	return nthElement((numberOfElements)/2);
+    	}else {
+    		return nthElement((numberOfElements+1)/2);
+    	}
+    }
+    
+    
+    public boolean itsFull() {
+    	if(root == null) {
+    		return false;
+    	}
+    	double doubleResult = Math.pow(2, root.height);
+    	if(doubleResult-1 == subtreeSize(root)) {
+    		return true;
+    	}else {
+    		return false;
+    	}
+    }
+    
+    public boolean itsComplete() {
+    	if(root == null) {
+    		return false;
+    	}
+    	int numberOfUs = subtreeSize(root);
+    	if(Math.pow(2, root.height-1) <= numberOfUs && numberOfUs <= Math.pow(2, root.height) -1) {
+    		return true;
+    	}else {
+    		return false;
+    	}
+    	
     }
     
     public String pre_ordem() {
         StringBuilder result = new StringBuilder();
-        preOrdemRecursiva(root, result);
+        preOrdemRecursive(root, result);
         return result.toString();
     }
 
-    private void preOrdemRecursiva(Node node, StringBuilder result) {
+    private void preOrdemRecursive(Node node, StringBuilder result) {
         if (node != null) {
             result.append(node.getValue()).append(" ");
 
-            preOrdemRecursiva(node.getLeft(), result);
+            preOrdemRecursive(node.getLeft(), result);
 
-            preOrdemRecursiva(node.getRight(), result);
+            preOrdemRecursive(node.getRight(), result);
         }
     }
-
 
 }
 

@@ -13,13 +13,15 @@ public class Teste {
 		 bst.printTree(1);
 		bst.insert(3);
 		bst.insert(4);
-		//bst.insert(8);
+		bst.insert(8);
 		bst.insert(6);
 		bst.insert(6);
-		//bst.insert(2);
-		//bst.insert(9);
-		//bst.insert(7);
-		
+		bst.insert(2);
+		bst.insert(9);
+//		bst.insert(11);
+//		bst.insert(12);
+//		bst.insert(13);
+
 		
 	    bst.printTree(1);
 	
@@ -30,16 +32,16 @@ public class Teste {
         System.out.println("Buscar 4: " + bst.search(4));
         System.out.println("Buscar 6: " + bst.search(6));
         
-       bst.remove(5);
-       bst.remove(20);
-       bst.remove(20);
-       bst.remove(20);
+       //bst.remove(5);
+       //bst.remove(20);
+       //bst.remove(20);
+       //bst.remove(20);
        
        System.out.println("\nMédia a partir do 4 "+bst.average(4));
        bst.printTree(1);
        
        
-       bst.remove(3);
+       //bst.remove(3);
 		//bst.remove(10);
 		// bst.remove(9);
        //bst.insert(3);
@@ -53,26 +55,38 @@ public class Teste {
         System.out.println("Buscar 6: " + bst.search(6));
         
         
-        System.out.println("bucando o primeiro elemento: " + bst.enesimoElemento(1));
-        System.out.println("bucando o segundo elemento: " + bst.enesimoElemento(2));
-        System.out.println("bucando o teceiro elemento: " + bst.enesimoElemento(3));
-        System.out.println("bucando o quarto elemento: " + bst.enesimoElemento(4));
-        System.out.println("bucando elemento inexistente: " + bst.enesimoElemento(5));
+        System.out.println("bucando o primeiro elemento: " + bst.nthElement(1));
+        System.out.println("bucando o segundo elemento: " + bst.nthElement(2));
+        System.out.println("bucando o teceiro elemento: " + bst.nthElement(3));
+        System.out.println("bucando o quarto elemento: " + bst.nthElement(4));
+        System.out.println("bucando elemento inexistente: " + bst.nthElement(5));
 
-        System.out.println("posicao do 5: " + bst.posicao(5));
-        System.out.println("posicao do 3: " + bst.posicao(3));
-        System.out.println("posicao do 8: " + bst.posicao(8));
-        System.out.println("posicao do 6: " + bst.posicao(6));
-        System.out.println("posicao do 9: " + bst.posicao(9));
-        System.out.println("posicao do 7: " + bst.posicao(7));
-        System.out.println("posicao do 45: " + bst.posicao(45));
-        System.out.println("posicao do 60: " + bst.posicao(60));
-        System.out.println("posicao do 55: " + bst.posicao(55));
+        System.out.println("position do 5: " + bst.position(5));
+        System.out.println("position do 3: " + bst.position(3));
+        System.out.println("position do 8: " + bst.position(8));
+        System.out.println("position do 6: " + bst.position(6));
+        System.out.println("position do 9: " + bst.position(9));
+        System.out.println("position do 7: " + bst.position(7));
+        System.out.println("position do 45: " + bst.position(45));
+        System.out.println("position do 60: " + bst.position(60));
+        System.out.println("position do 55: " + bst.position(55));
         
-        System.out.println("A mediana é: " + bst.mediana());
+        System.out.println("A mediana é: " + bst.median());
         
         String testando = bst.pre_ordem();
         System.out.println(testando);
+        
+        if(bst.itsFull()) {
+        	System.out.println("a arvore é cheia");
+        }else {
+        	System.out.println("a arvore n é cheia");
+        }
+        
+        if(bst.itsComplete()) {
+        	System.out.println("a arvore é do tipo completa");
+        }else {
+        	System.out.println("a arvore n é do tipo completa");
+        }
 	}
 
 }
