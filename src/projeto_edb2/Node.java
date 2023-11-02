@@ -8,7 +8,7 @@ public class Node {
 	private int subtreeSum;
 	private Node left;
 	private Node right;
-	int height;
+	private int height;
 	
 	public Node(int value) {
 		 this.value = value;

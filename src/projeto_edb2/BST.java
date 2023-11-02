@@ -129,7 +129,10 @@ public class BST {
     
     public void printTree(int s) {
     	
-    	System.out.println("altura: "+root.getHeight());
+    	if(root == null) {
+    		return ;
+    	}
+    	
     	if(s == 1) {
     		printFormat1(root, "", root.getHeight()*10); 
     	} else {
@@ -203,7 +206,7 @@ public class BST {
     	Node node = search(x);
     	
     	if(node == null) {
-    		return 0;
+    		return -1;
     	}
     	int totalNode = node.getLeftSize() + node.getRightSize() + 1;
     	return (double) node.getSubtreeSum() / totalNode;
@@ -278,7 +281,7 @@ public class BST {
     	if(root == null) {
     		return false;
     	}
-    	double doubleResult = Math.pow(2, root.height);
+    	double doubleResult = Math.pow(2, root.getHeight());
     	if(doubleResult-1 == subtreeSize(root)) {
     		return true;
     	}else {
@@ -291,7 +294,7 @@ public class BST {
     		return false;
     	}
     	int numberOfUs = subtreeSize(root);
-    	if(Math.pow(2, root.height-1) <= numberOfUs && numberOfUs <= Math.pow(2, root.height) -1) {
+    	if(Math.pow(2, root.getHeight()-1) <= numberOfUs && numberOfUs <= Math.pow(2, root.getHeight()) -1) {
     		return true;
     	}else {
     		return false;
