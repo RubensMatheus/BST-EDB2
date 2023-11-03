@@ -65,24 +65,14 @@ public class Node {
 	public int getSubtreeSum() {
 	    return subtreeSum;
 	}
-	
-	public void updateSubtreeSum() {
-	    this.subtreeSum = value + subtreeSum(left) + subtreeSum(right);
+
+	public void setSubtreeSum(int subtreeSum) {
+		this.subtreeSum = subtreeSum;
 	}
 
-	private int subtreeSum(Node node) {
-	    return (node == null) ? 0 : node.getSubtreeSum();
+	public void setHeight(int height) {
+		this.height = height;
 	}
-
-
-	public void updateHeight() {
-        this.height = 1 + Math.max(height(left), height(right));
-    }
-
-    private int height(Node node) {
-        return (node == null) ? 0 : node.getHeight();
-    }
-
 
 	@Override
 	public String toString() {

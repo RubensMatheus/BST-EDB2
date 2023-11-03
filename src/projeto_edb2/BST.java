@@ -55,13 +55,13 @@ public class BST {
 	        node.setRightSize(node.getRightSize() + 1);
 	        
 	    } else {
-	        return false;
+	    	return false;
 	    }
 	   
-	   	node.updateSubtreeSum();
-	    node.updateHeight();
+	   updateSubtreeSum(node);
+	   updateHeight(node);
 	    
-	    return true;
+	   return true;
     }
 
 
@@ -112,8 +112,8 @@ public class BST {
 
 		}
 		
-		node.updateSubtreeSum();
-		node.updateHeight();
+		updateSubtreeSum(node);
+		updateHeight(node);
 		
 		return false;
 		
@@ -129,12 +129,8 @@ public class BST {
     
     public void printTree(int s) {
     	
-    	if(root == null) {
-    		return ;
-    	}
-    	
     	if(s == 1) {
-    		printFormat1(root, "", root.getHeight()*10); 
+    		printFormat1(root, "", height(root)*10); 
     	} else {
     		printFormat2(root);
     	}
@@ -202,7 +198,7 @@ public class BST {
     }*/
     
     
-      public double average(int x) {
+    public double average(int x) {
     	Node node = search(x);
     	
     	if(node == null) {
@@ -210,6 +206,36 @@ public class BST {
     	}
     	int totalNode = node.getLeftSize() + node.getRightSize() + 1;
     	return (double) node.getSubtreeSum() / totalNode;
+    }
+      
+  	private void updateSubtreeSum(Node node) {
+  		if(node == null) {
+  			return ;
+  		}
+  		
+	    node.setSubtreeSum(node.getValue() + subtreeSum(node.getLeft()) + subtreeSum(node.getRight()));
+	}
+
+	private int subtreeSum(Node node) {
+		if(node == null) {
+			return 0;
+		}
+	    return node.getSubtreeSum();
+	}
+
+
+	private void updateHeight(Node node) {
+		if(node == null) {
+  			return ;
+  		}
+        node.setHeight(1 + Math.max(height(node.getLeft()), height(node.getRight())));
+    }
+
+    private int height(Node node) {
+    	if(node == null) {
+    		return 0;
+    	}
+    	return node.getHeight();
     }
      
     
