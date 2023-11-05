@@ -130,7 +130,7 @@ public class BST {
     public void printTree(int s) {
     	
     	if(s == 1) {
-    		printFormat1(root, "", height(root)*10); 
+    		printFormat1(root, "", height(root)*8); 
     	} else {
     		printFormat2(root);
     	}
