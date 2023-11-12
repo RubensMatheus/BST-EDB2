@@ -8,14 +8,14 @@ public class BST {
 		return searchRecursive(root, value);
 	}
 
-    private Node searchRecursive(Node node, int value) {
-        if (node == null || node.getValue() == value) {
-            return node;
-        }
+	private Node searchRecursive(Node node, int value) {
+		if (node == null || node.getValue() == value) {
+			return node;
+		}
 
-        if (value < node.getValue()) {
-        	return searchRecursive(node.getLeft(), value);
-        } 
+		if (value < node.getValue()) {
+			return searchRecursive(node.getLeft(), value);	
+		} 
         
         return searchRecursive(node.getRight(), value);
        
@@ -27,9 +27,8 @@ public class BST {
     		root = new Node(value);
     		return true;
     	} 
-    	
+
     	return insertRecursive(root, value);
-    	
     }
 
    private boolean insertRecursive(Node node, int value) {
@@ -91,20 +90,21 @@ public class BST {
 			if (node.getRight() != null && node.getLeft() != null) { 
 				
 				Node predecessor = findPredecessor(node.getLeft());
-		    	node.setValue(predecessor.getValue());
-		    	removeRecursive(node.getLeft(), node, predecessor.getValue());
+				node.setValue(predecessor.getValue());
+				removeRecursive(node.getLeft(), node, predecessor.getValue());
 				node.setLeftSize(node.getLeftSize() - 1);
 				
-		    } else { //2: Folha ou tem um filho		 
-		    	Node childNode = (node.getLeft() != null) ? node.getLeft() : node.getRight();
+		    } else { 
+				//2: Folha ou tem um filho		 
+				Node childNode = (node.getLeft() != null) ? node.getLeft() : node.getRight();
 			        
-	    		if (parent == null) {
-		            root = childNode;
-		        } else if (parent.getLeft() == node) {
-		            parent.setLeft(childNode);
-		        } else if (parent.getRight() == node) {
-		            parent.setRight(childNode);
-		        }
+				if (parent == null) {
+					root = childNode;
+				} else if (parent.getLeft() == node) {
+					parent.setLeft(childNode);
+				} else if (parent.getRight() == node) {
+					parent.setRight(childNode);
+				}
 		    	
 		    }
 			
@@ -121,19 +121,18 @@ public class BST {
 
 
     private Node findPredecessor(Node node) {
-        while (node.getRight() != null) {
-            node = node.getRight();
-        }
-        return node;
+		while (node.getRight() != null) {
+			node = node.getRight();
+		}
+		return node;
     }
     
     public void printTree(int s) {
-    	
-    	if(s == 1) {
-    		printFormat1(root, "", height(root)*8); 
-    	} else {
-    		printFormat2(root);
-    	}
+		if(s == 1) {
+			printFormat1(root, "", height(root)*8); 
+		} else {
+			printFormat2(root);
+		}
     }
     
     private void printFormat1(Node node, String space, int quantityDashes) {
@@ -173,30 +172,6 @@ public class BST {
     	
     }
     
-   /* public double average(int x) {
-    	Node node = search(x);
-    	
-    	if(node == null) {
-    		return 0;
-    	}
-    	
-    	int totalNode = node.getLeftSize() + node.getRightSize() + 1;
-    	double totalSum = calculateSum(node);
-    	
-    	return (double) totalSum/totalNode;
-    }
-    
-    private int calculateSum(Node node) {
-    	if(node == null) {
-    		return 0;
-    	}
-    	
-    	int totalLeft = calculateSum(node.getLeft());
-    	int totalRight = calculateSum(node.getRight());
-    	
-    	return node.getValue() + totalLeft + totalRight;
-    }*/
-    
     
     public double average(int x) {
     	Node node = search(x);
@@ -204,6 +179,7 @@ public class BST {
     	if(node == null) {
     		return -1;
     	}
+
     	int totalNode = node.getLeftSize() + node.getRightSize() + 1;
     	return (double) node.getSubtreeSum() / totalNode;
     }

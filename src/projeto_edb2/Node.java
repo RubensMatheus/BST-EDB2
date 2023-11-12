@@ -14,19 +14,8 @@ public class Node {
 		 this.value = value;
 		 this.height = 1;
 		 this.subtreeSum = value;
-	 }
-	
-	public Node(int value, int leftSize, int rightSize, Node left, Node right, int height) {
-		super();
-		this.value = value;
-		this.leftSize = leftSize;
-		this.rightSize = rightSize;
-		this.left = left;
-		this.right = right;
-		this.height = height;
 	}
 	
-
 	public int getValue() {
 		return value;
 	}
