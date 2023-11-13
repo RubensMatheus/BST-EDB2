@@ -77,14 +77,18 @@ public class BST {
 
 		if (value < node.getValue()) {
 			
-			if(removeRecursive(node.getLeft(), node, value)) {
-				node.setLeftSize(node.getLeftSize() - 1);
+			if(!removeRecursive(node.getLeft(), node, value)) {
+				return false;
 			}
 			
+			node.setLeftSize(node.getLeftSize() - 1);
+			
 		} else if (value > node.getValue()) {
-			if(removeRecursive(node.getRight(), node, value)) {
-				node.setRightSize(node.getRightSize() - 1);
+			if(!removeRecursive(node.getRight(), node, value)) {
+				return false;
 			}
+			
+			node.setRightSize(node.getRightSize() - 1);
 		} else {
 			// 1: Tem dois filhos
 			if (node.getRight() != null && node.getLeft() != null) { 
@@ -92,8 +96,11 @@ public class BST {
 				Node predecessor = findPredecessor(node.getLeft());
 				node.setValue(predecessor.getValue());
 				removeRecursive(node.getLeft(), node, predecessor.getValue());
+		
 				node.setLeftSize(node.getLeftSize() - 1);
-				
+				updateSubtreeSum(node);
+				updateHeight(node);
+	
 		    } else { 
 				//2: Folha ou tem um filho		 
 				Node childNode = (node.getLeft() != null) ? node.getLeft() : node.getRight();
@@ -110,12 +117,12 @@ public class BST {
 			
 	        return true;
 
-		}
+		} 
 		
 		updateSubtreeSum(node);
 		updateHeight(node);
 		
-		return false;
+		return true;
 		
     }
 
@@ -128,20 +135,13 @@ public class BST {
     }
     
     public void printTree(int s) {
-<<<<<<< HEAD
+
     	if(s == 1) {
-    		printFormat1(root, "", root.getHeight()*10); 
+    		printFormat1(root, "", root.getHeight()*8); 
     	} else {
     		printFormat2(root);
     		System.out.println();
     	}
-=======
-		if(s == 1) {
-			printFormat1(root, "", height(root)*8); 
-		} else {
-			printFormat2(root);
-		}
->>>>>>> branch 'main' of https://github.com/wislaargolo/BST-EDB2.git
     }
     
     private void printFormat1(Node node, String space, int quantityDashes) {
