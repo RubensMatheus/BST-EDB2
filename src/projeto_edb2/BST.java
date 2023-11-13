@@ -128,12 +128,11 @@ public class BST {
     }
     
     public void printTree(int s) {
-    	
-    	System.out.println("altura: "+root.getHeight());
     	if(s == 1) {
     		printFormat1(root, "", root.getHeight()*10); 
     	} else {
     		printFormat2(root);
+    		System.out.println();
     	}
     }
     
@@ -171,7 +170,6 @@ public class BST {
     	}
     	
     	System.out.print(")");
-    	
     }
     
    /* public double average(int x) {
