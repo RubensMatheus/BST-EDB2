@@ -19,17 +19,17 @@ public class Teste {
 		System.out.println(bst.insert(2));
 		bst.insert(15);
 		bst.insert(2);
-//		bst.insert(5);
-//		bst.insert(9);
-//		bst.insert(11);
-//		bst.insert(12);
-//		bst.insert(13);
-//		bst.insert(14);
-//		bst.insert(15);
-//		bst.insert(16);
-//		bst.insert(17);
-//		bst.insert(18);
-//		bst.insert(19);
+		bst.insert(5);
+		bst.insert(9);
+		bst.insert(11);
+		bst.insert(12);
+		bst.insert(13);
+		bst.insert(14);
+		bst.insert(15);
+		bst.insert(16);
+		bst.insert(17);
+		bst.insert(18);
+		bst.insert(19);
 
 		
 	    bst.printTree(1);
