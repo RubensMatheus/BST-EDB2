@@ -135,7 +135,6 @@ public class BST {
     }
     
     public void printTree(int s) {
-
     	if(s == 1) {
     		printFormat1(root, "", root.getHeight()*8); 
     	} else {

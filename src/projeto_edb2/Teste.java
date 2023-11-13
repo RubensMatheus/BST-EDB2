@@ -1,4 +1,3 @@
-
 package projeto_edb2;
 
 public class Teste {
@@ -78,4 +77,3 @@ public class Teste {
 	}
 
 }
-
