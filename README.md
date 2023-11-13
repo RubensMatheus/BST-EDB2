@@ -24,7 +24,6 @@ Este projeto implementa uma Árvore Binária de Busca (ABB) aumentada em Java, u
 ```
 sudo apt update
 sudo apt install default-jdk
-
 ```
 
 ## Compilação e Execução
@@ -40,6 +39,13 @@ Posteriormente, utilize:
 ```
 java projeto_edb2.Main <caminho para o arquivo de descrição da árvore> <caminho para o arquivo dos métodos>
 ```
+
+Por exemplo, para os arquivos de teste, o comando para a execução seria:
+
+```
+java projeto_edb2.Main src/projeto_edb2/arquivo1.txt src/projeto_edb2/arquivo2.txt
+```
+
 
 
 
