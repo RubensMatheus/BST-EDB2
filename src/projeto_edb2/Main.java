@@ -10,14 +10,20 @@ import java.util.List;
 
 public class Main {
 
-	public static void main(String[] args) {		
+	public static void main(String[] args) {	
 		
-		String filePath = "src/projeto_edb2/arquivo1.txt";
+		 if (args.length < 2) {
+	            System.out.println("ERROR >> Arquivos não fornecidos");
+	            return;
+	        }
+
+	    String filePath1 = args[0];
+	    String filePath2 = args[1];
 
         List<String> initialTree = new ArrayList<>();
 		
 		try {
-            File file = new File(filePath);
+            File file = new File(filePath1);
             FileReader fileReader = new FileReader(file);
             BufferedReader buffer = new BufferedReader(fileReader);
 
@@ -35,14 +41,12 @@ public class Main {
             e.printStackTrace();
         }
 		
-		
-		
-        filePath = "src/projeto_edb2/arquivo2.txt";
+	
 
         List<String> commands = new ArrayList<>();
 
         try {
-            File file = new File(filePath);
+            File file = new File(filePath2);
             FileReader fileReader = new FileReader(file);
             BufferedReader buffer = new BufferedReader(fileReader);
 
