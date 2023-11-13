@@ -128,20 +128,17 @@ public class BST {
     }
     
     public void printTree(int s) {
-<<<<<<< HEAD
     	if(s == 1) {
     		printFormat1(root, "", root.getHeight()*10); 
     	} else {
     		printFormat2(root);
     		System.out.println();
     	}
-=======
 		if(s == 1) {
 			printFormat1(root, "", height(root)*8); 
 		} else {
 			printFormat2(root);
 		}
->>>>>>> branch 'main' of https://github.com/wislaargolo/BST-EDB2.git
     }
     
     private void printFormat1(Node node, String space, int quantityDashes) {
