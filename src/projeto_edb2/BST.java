@@ -8,14 +8,14 @@ public class BST {
 		return searchRecursive(root, value);
 	}
 
-    private Node searchRecursive(Node node, int value) {
-        if (node == null || node.getValue() == value) {
-            return node;
-        }
+	private Node searchRecursive(Node node, int value) {
+		if (node == null || node.getValue() == value) {
+			return node;
+		}
 
-        if (value < node.getValue()) {
-        	return searchRecursive(node.getLeft(), value);
-        } 
+		if (value < node.getValue()) {
+			return searchRecursive(node.getLeft(), value);	
+		} 
         
         return searchRecursive(node.getRight(), value);
        
@@ -27,9 +27,8 @@ public class BST {
     		root = new Node(value);
     		return true;
     	} 
-    	
+
     	return insertRecursive(root, value);
-    	
     }
 
    private boolean insertRecursive(Node node, int value) {
@@ -55,13 +54,13 @@ public class BST {
 	        node.setRightSize(node.getRightSize() + 1);
 	        
 	    } else {
-	        return false;
+	    	return false;
 	    }
 	   
-	   	node.updateSubtreeSum();
-	    node.updateHeight();
+	   updateSubtreeSum(node);
+	   updateHeight(node);
 	    
-	    return true;
+	   return true;
     }
 
 
@@ -91,20 +90,21 @@ public class BST {
 			if (node.getRight() != null && node.getLeft() != null) { 
 				
 				Node predecessor = findPredecessor(node.getLeft());
-		    	node.setValue(predecessor.getValue());
-		    	removeRecursive(node.getLeft(), node, predecessor.getValue());
+				node.setValue(predecessor.getValue());
+				removeRecursive(node.getLeft(), node, predecessor.getValue());
 				node.setLeftSize(node.getLeftSize() - 1);
 				
-		    } else { //2: Folha ou tem um filho		 
-		    	Node childNode = (node.getLeft() != null) ? node.getLeft() : node.getRight();
+		    } else { 
+				//2: Folha ou tem um filho		 
+				Node childNode = (node.getLeft() != null) ? node.getLeft() : node.getRight();
 			        
-	    		if (parent == null) {
-		            root = childNode;
-		        } else if (parent.getLeft() == node) {
-		            parent.setLeft(childNode);
-		        } else if (parent.getRight() == node) {
-		            parent.setRight(childNode);
-		        }
+				if (parent == null) {
+					root = childNode;
+				} else if (parent.getLeft() == node) {
+					parent.setLeft(childNode);
+				} else if (parent.getRight() == node) {
+					parent.setRight(childNode);
+				}
 		    	
 		    }
 			
@@ -112,8 +112,8 @@ public class BST {
 
 		}
 		
-		node.updateSubtreeSum();
-		node.updateHeight();
+		updateSubtreeSum(node);
+		updateHeight(node);
 		
 		return false;
 		
@@ -121,19 +121,27 @@ public class BST {
 
 
     private Node findPredecessor(Node node) {
-        while (node.getRight() != null) {
-            node = node.getRight();
-        }
-        return node;
+		while (node.getRight() != null) {
+			node = node.getRight();
+		}
+		return node;
     }
     
     public void printTree(int s) {
+<<<<<<< HEAD
     	if(s == 1) {
     		printFormat1(root, "", root.getHeight()*10); 
     	} else {
     		printFormat2(root);
     		System.out.println();
     	}
+=======
+		if(s == 1) {
+			printFormat1(root, "", height(root)*8); 
+		} else {
+			printFormat2(root);
+		}
+>>>>>>> branch 'main' of https://github.com/wislaargolo/BST-EDB2.git
     }
     
     private void printFormat1(Node node, String space, int quantityDashes) {
@@ -172,39 +180,46 @@ public class BST {
     	System.out.print(")");
     }
     
-   /* public double average(int x) {
+    
+    public double average(int x) {
     	Node node = search(x);
     	
     	if(node == null) {
-    		return 0;
+    		return -1;
     	}
-    	
-    	int totalNode = node.getLeftSize() + node.getRightSize() + 1;
-    	double totalSum = calculateSum(node);
-    	
-    	return (double) totalSum/totalNode;
-    }
-    
-    private int calculateSum(Node node) {
-    	if(node == null) {
-    		return 0;
-    	}
-    	
-    	int totalLeft = calculateSum(node.getLeft());
-    	int totalRight = calculateSum(node.getRight());
-    	
-    	return node.getValue() + totalLeft + totalRight;
-    }*/
-    
-    
-      public double average(int x) {
-    	Node node = search(x);
-    	
-    	if(node == null) {
-    		return 0;
-    	}
+
     	int totalNode = node.getLeftSize() + node.getRightSize() + 1;
     	return (double) node.getSubtreeSum() / totalNode;
+    }
+      
+  	private void updateSubtreeSum(Node node) {
+  		if(node == null) {
+  			return ;
+  		}
+  		
+	    node.setSubtreeSum(node.getValue() + subtreeSum(node.getLeft()) + subtreeSum(node.getRight()));
+	}
+
+	private int subtreeSum(Node node) {
+		if(node == null) {
+			return 0;
+		}
+	    return node.getSubtreeSum();
+	}
+
+
+	private void updateHeight(Node node) {
+		if(node == null) {
+  			return ;
+  		}
+        node.setHeight(1 + Math.max(height(node.getLeft()), height(node.getRight())));
+    }
+
+    private int height(Node node) {
+    	if(node == null) {
+    		return 0;
+    	}
+    	return node.getHeight();
     }
      
     
@@ -276,7 +291,7 @@ public class BST {
     	if(root == null) {
     		return false;
     	}
-    	double doubleResult = Math.pow(2, root.height);
+    	double doubleResult = Math.pow(2, root.getHeight());
     	if(doubleResult-1 == subtreeSize(root)) {
     		return true;
     	}else {
@@ -289,7 +304,7 @@ public class BST {
     		return false;
     	}
     	int numberOfUs = subtreeSize(root);
-    	if(Math.pow(2, root.height-1) <= numberOfUs && numberOfUs <= Math.pow(2, root.height) -1) {
+    	if(Math.pow(2, root.getHeight()-1) <= numberOfUs && numberOfUs <= Math.pow(2, root.getHeight()) -1) {
     		return true;
     	}else {
     		return false;
