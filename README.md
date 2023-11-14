@@ -1,7 +1,7 @@
 # Árvore Binária de Busca Aumentada
 
 ## Descrição
-Este projeto implementa uma Árvore Binária de Busca (ABB) aumentada em Java, uma estrutura de dados que suporta as operações listadas abaixo.
+Este projeto implementa uma Árvore Binária de Busca (ABB) aumentada em Java, uma estrutura de dados que suporta as operações listadas abaixo. O relatório do projeto está no respositório e tem nome "ABB__EDB2.pdf".
 
 ## Funcionalidades
 - `Node search(int value)`: Retorna o nó que possui o valor procurado, ou nulo se não for encontrado.
